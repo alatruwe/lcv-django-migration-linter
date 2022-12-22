@@ -174,9 +174,10 @@ class MigrationLinter:
         }
         new_sorted_migrations = []
         for m in sorted_migrations:
-            if m.app_label in migrations_breakpoint.keys() and m.name[0:4] >= migrations_breakpoint[m.app_label]:
+            if m.app_label in migrations_breakpoint.keys() and m.name[0:4] > migrations_breakpoint[m.app_label]:
                 new_sorted_migrations.append(m)
 
+        print('============new_sorted_migrations===========')
         print(new_sorted_migrations)
         return new_sorted_migrations
 

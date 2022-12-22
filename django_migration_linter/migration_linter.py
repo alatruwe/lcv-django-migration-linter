@@ -177,8 +177,6 @@ class MigrationLinter:
             if m.app_label in migrations_breakpoint.keys() and m.name[0:4] > migrations_breakpoint[m.app_label]:
                 new_sorted_migrations.append(m)
 
-        print('============new_sorted_migrations===========')
-        print(new_sorted_migrations)
         return new_sorted_migrations
 
     def lint_migration(self, migration):

@@ -119,6 +119,7 @@ class MigrationLinter:
         if git_commit_id:
             migrations = self._gather_migrations_git(git_commit_id, migrations_list)
         else:
+            print('migrations_list in collect migrations')
             print(migrations_list)
             migrations = self._gather_all_migrations(migrations_list)
 
@@ -126,7 +127,7 @@ class MigrationLinter:
         sorted_migrations = sorted(
             migrations, key=lambda migration: (migration.app_label, migration.name)
         )
-
+        print(sorted_migrations)
         specific_target_migration = (
             self.migration_loader.get_migration_by_prefix(app_label, migration_name)
             if app_label and migration_name
@@ -394,7 +395,6 @@ class MigrationLinter:
         return migrations
 
     def _gather_all_migrations(self, migrations_list=None):
-        import pdb; pdb.set_trace()
         for (
             (app_label, name),
             migration,

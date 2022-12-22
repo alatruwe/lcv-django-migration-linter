@@ -393,6 +393,7 @@ class MigrationLinter:
         return migrations
 
     def _gather_all_migrations(self, migrations_list=None):
+        import pdb; pdb.set_trace()
         for (
             (app_label, name),
             migration,

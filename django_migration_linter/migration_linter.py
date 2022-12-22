@@ -119,8 +119,6 @@ class MigrationLinter:
         if git_commit_id:
             migrations = self._gather_migrations_git(git_commit_id, migrations_list)
         else:
-            print('migrations_list in collect migrations')
-            print(migrations_list)
             migrations = self._gather_all_migrations(migrations_list)
 
         # Lint those migrations
@@ -133,6 +131,7 @@ class MigrationLinter:
             if app_label and migration_name
             else None
         )
+        self.remove_old_migrations(sorted_migrations)
 
         for m in sorted_migrations:
             if app_label and migration_name:
@@ -146,6 +145,10 @@ class MigrationLinter:
 
         if self.should_use_cache():
             self.new_cache.save()
+
+    def remove_old_migrations(self, sorted_migrations):
+        for m in sorted_migrations:
+            print(m.name)
 
     def lint_migration(self, migration):
         app_label = migration.app_label

@@ -130,9 +130,9 @@ class MigrationLinter:
             if app_label and migration_name
             else None
         )
-        self.remove_old_migrations(sorted_migrations)
+        new_sorted_migrations = self.remove_old_migrations(sorted_migrations)
 
-        for m in sorted_migrations:
+        for m in new_sorted_migrations:
             if app_label and migration_name:
                 if m == specific_target_migration:
                     self.lint_migration(m)

@@ -119,6 +119,7 @@ class MigrationLinter:
         if git_commit_id:
             migrations = self._gather_migrations_git(git_commit_id, migrations_list)
         else:
+            print(migrations_list)
             migrations = self._gather_all_migrations(migrations_list)
 
         # Lint those migrations
